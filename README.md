@@ -4,8 +4,12 @@ collection of interesting tasks from auditions in mocha tests
 # Run
 First install dependencies
 
-```npm i```
+```
+npm i
+```
 
 Next run
 
-```npm run test```
+```
+npm run test
+```
