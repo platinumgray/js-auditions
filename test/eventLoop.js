@@ -1,4 +1,3 @@
-const expect = require("chai").expect;
 const EventEmitter = require("events");
 
 describe("event loop", () => {

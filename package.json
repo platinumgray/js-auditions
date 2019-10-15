@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nativeConsole=true mocha -R spec --ui bdd --exit"
+    "test": "nativeConsole=true  mocha -R spec --ui  bdd --exit --reporter list"
   },
   "keywords": [],
   "author": "",
