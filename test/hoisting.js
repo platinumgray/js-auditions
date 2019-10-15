@@ -3,19 +3,21 @@ const expect = require("chai").expect;
 describe("hoisting", () => {
   it("using var variable before initialize", () => {
     console.log(x);
+    expect(x).to.be.eq(undefined);
     var x = 1;
   });
 
-  it("using function before announcement", () => {
+  it("using function before announcement", done => {
     hello();
     function hello() {
-      console.log("world");
+      console.log("hello fn used");
+      done();
     }
   });
 
   it("using const arrow function before announcement", done => {
-    //const dont hoist
     try {
+      //const don't hoist
       fn();
       const fn = () => console.log("foo");
     } catch (error) {
@@ -25,7 +27,7 @@ describe("hoisting", () => {
 
   it("using var arrow function before announcement", done => {
     try {
-      //dont hoist in this situation neither
+      //don't hoist in this situation neither
       fn();
       var fn = () => console.log("foo");
     } catch (error) {
@@ -38,16 +40,5 @@ describe("hoisting", () => {
     for (var i = 0; i < 3; i++) {}
 
     expect(arr[i]).to.equal(4);
-  });
-
-  it("weird hoisting task", () => {
-    var a = 1;
-    function f() {
-      console.log("inside fn", a);
-      var a = 5;
-    }
-    console.log("outside fn", a);
-
-    f();
   });
 });
