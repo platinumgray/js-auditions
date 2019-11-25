@@ -17,7 +17,7 @@ const globalSchema = Joi.object({
   tags: Joi.array().items(Joi.string())
 });
 
-describe.only("joi scaling", () => {
+describe("joi scaling", () => {
   it("global joi schema test success", () => {
     const initialExample = {
       checked: false,

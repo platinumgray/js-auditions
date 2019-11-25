@@ -31,7 +31,7 @@
   (function() {
     const time = window.performance.now();
     const resArray = data.forEach(
-      item => (item.str = `${item.prefix}-${item.firstName}-${item.lastName}`)
+      (item) => (item.str = `${item.prefix}-${item.firstName}-${item.lastName}`)
     );
     const diff = window.performance.now();
     const secondsDiff = diff - time;
