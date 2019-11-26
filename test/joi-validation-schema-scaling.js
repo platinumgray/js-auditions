@@ -50,7 +50,6 @@ describe("joi scaling", () => {
       `"dimensions.height" must be larger than or equal to 0`
     );
   });
-
   it("joi scaling though keys", () => {
     const localSchema = globalSchema.keys({
       dimensions: Joi.object({
@@ -114,8 +113,52 @@ describe("joi scaling", () => {
     };
 
     const localResult = altSchema.validate(alternativeExample);
-    expect(localResult.value).deep.equal(alternativeExample)
+    expect(localResult.value).deep.equal(alternativeExample);
     const globalResult = altSchema.validate(initialExample);
-    expect(globalResult.value).deep.equal(initialExample)
+    expect(globalResult.value).deep.equal(initialExample);
+  });
+
+  it("joi get ref value", () => {
+    const tagMap = {
+      green: ["home", "bee"],
+      cat: ["fluff", "dog"],
+      apple: ["banana", "red"]
+    };
+
+    function scaleSchema(schema, scaler) {
+      const whenObj = Object.keys(scaler).reduce(
+        (acc, key) => [
+          ...acc,
+          {
+            is: key,
+            then: Joi.array().items(
+              ...tagMap[key].map(item =>
+                Joi.string()
+                  .valid(item)
+                  .required()
+              )
+            )
+          }
+        ],
+        []
+      );
+      return schema.fork("tags", x => x.when(Joi.ref("name"), whenObj));
+    }
+
+    const initialExample = {
+      checked: false,
+      dimensions: {
+        width: 5,
+        height: 10
+      },
+      id: 1,
+      name: "cat",
+      price: 12.5,
+      tags: ["fluff", "dog"]
+    };
+
+    const localSchema = scaleSchema(globalSchema, tagMap);
+    const res = localSchema.validate(initialExample);
+    expect(res.value).to.deep.equal(initialExample);
   });
 });

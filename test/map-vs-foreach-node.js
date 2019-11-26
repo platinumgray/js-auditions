@@ -42,7 +42,6 @@ describe("map vs forEach performance comparing", () => {
     const resArray = data.forEach(
       item => (item.str = `${item.prefix}-${item.firstName}-${item.lastName}`)
     );
-    console.log(data[0])
     const diff = process.hrtime(time);
     const secondsDiff = (diff[0] * NS_PER_SEC + diff[1]) / NS_PER_SEC;
     console.log(`Benchmark for forEach took ${secondsDiff} seconds`);
