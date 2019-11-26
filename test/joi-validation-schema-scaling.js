@@ -117,7 +117,6 @@ describe("joi scaling", () => {
     const globalResult = altSchema.validate(initialExample);
     expect(globalResult.value).deep.equal(initialExample);
   });
-
   it("joi get ref value", () => {
     const tagMap = {
       green: ["home", "bee"],
