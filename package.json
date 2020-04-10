@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^16.1.7",
+    "@hapi/joi": "^16.1.8",
     "chai": "^4.2.0",
     "faker": "^4.1.0",
-    "mocha": "^6.2.1"
+    "mocha": "^6.2.3"
   }
 }
