@@ -1,5 +1,3 @@
-const expect = require("chai").expect;
-
 const Joi = require("@hapi/joi");
 const globalSchema = Joi.object({
   checked: Joi.boolean(),
@@ -31,7 +29,7 @@ describe("joi scaling", () => {
       tags: ["home", "green"]
     };
     const res = globalSchema.validate(initialExample);
-    expect(res.value).deep.equal(initialExample);
+    expect(res.value).toEqual(initialExample);
   });
   it("global joi schema test fail", () => {
     const initialExample = {
@@ -46,7 +44,7 @@ describe("joi scaling", () => {
       tags: ["home", "green"]
     };
     const res = globalSchema.validate(initialExample);
-    expect(res.error.message).deep.equal(
+    expect(res.error.message).toEqual(
       `"dimensions.height" must be larger than or equal to 0`
     );
   });
@@ -73,7 +71,7 @@ describe("joi scaling", () => {
       tags: ["home", "green"]
     };
     const res = localSchema.validate(initialExample);
-    expect(res.value).deep.equal(initialExample);
+    expect(res.value).toEqual(initialExample);
   });
   it("joi scaling though alternatives", () => {
     const localSchema = Joi.object({
@@ -113,9 +111,9 @@ describe("joi scaling", () => {
     };
 
     const localResult = altSchema.validate(alternativeExample);
-    expect(localResult.value).deep.equal(alternativeExample);
+    expect(localResult.value).toEqual(alternativeExample);
     const globalResult = altSchema.validate(initialExample);
-    expect(globalResult.value).deep.equal(initialExample);
+    expect(globalResult.value).toEqual(initialExample);
   });
   it("joi get ref value", () => {
     const tagMap = {
@@ -158,6 +156,6 @@ describe("joi scaling", () => {
 
     const localSchema = scaleSchema(globalSchema, tagMap);
     const res = localSchema.validate(initialExample);
-    expect(res.value).to.deep.equal(initialExample);
+    expect(res.value).toEqual(initialExample);
   });
 });

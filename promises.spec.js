@@ -1,4 +1,3 @@
-const expect = require("chai").expect;
 
 describe("Promises", () => {
   describe("handle errors from promises", () => {
@@ -39,7 +38,7 @@ describe("Promises", () => {
       try {
         await fn();
       } catch (error) {
-        expect(error).to.not.be.null;
+        expect(error).not.toBe(null);
       }
     });
 
@@ -51,10 +50,10 @@ describe("Promises", () => {
       try {
         fn().catch(error => {
           console.log("promise.catch worked");
-          expect(error).to.not.be.null;
+          expect(error).not.toBe(null);
         });
       } catch (error) {
-        expect(error).to.not.be.null;
+        expect(error).not.toBe(null);
       }
     });
   });

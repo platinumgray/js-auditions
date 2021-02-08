@@ -1,4 +1,3 @@
-const expect = require("chai").expect;
 
 describe("Test tasks", () => {
   describe("Compare JSON", () => {
@@ -22,7 +21,7 @@ describe("Test tasks", () => {
         '{"glossary":{"title":"example glossary","GlossDiv":{"title":"S","GlossList":{"GlossEntry":{"ID":"SGML","SortAs":"SGML","GlossTerm":"Standard Generalized Markup Language","Acronym":"SGML","Abbrev":"ISO 8879:1986","GlossDef":{"para":"A meta-markup language, used to create markup languages such as DocBook.","GlossSeeAlso":["GML","XML"]},"GlossSee":"markup"}}}}}';
 
       const result = compareJSON(json1, json2);
-      expect(result).to.equal(true);
+      expect(result).toBe(true);
     });
     it("Compare JSON false", () => {
       const json1 =
@@ -31,7 +30,7 @@ describe("Test tasks", () => {
         '{"glossary":{"title":"example_1 glossary","GlossDiv":{"title":"S","GlossList":{"GlossEntry":{"ID":"SGML","SortAs":"SGML","GlossTerm":"Standard Generalized Markup Language","Acronym":"SGML","Abbrev":"ISO 8879:1986","GlossDef":{"para":"A meta-markup language, used to create markup languages such as DocBook.","GlossSeeAlso":["GML","XML"]},"GlossSee":"markup"}}}}}';
 
       const result = compareJSON(json1, json2);
-      expect(result).to.equal(false);
+      expect(result).toBe(false);
     });
   });
 

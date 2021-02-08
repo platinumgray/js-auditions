@@ -1,9 +1,8 @@
-const expect = require("chai").expect;
 
 describe("hoisting", () => {
   it("using var variable before initialize", () => {
     console.log(x);
-    expect(x).to.be.eq(undefined);
+    expect(x).toBe(undefined);
     var x = 1;
   });
 
@@ -39,6 +38,6 @@ describe("hoisting", () => {
     const arr = [1, 2, 3, 4];
     for (var i = 0; i < 3; i++) {}
 
-    expect(arr[i]).to.equal(4);
+    expect(arr[i]).toBe(4);
   });
 });
