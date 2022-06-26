@@ -1,4 +1,3 @@
-
 describe("Test tasks", () => {
   describe("Compare JSON", () => {
     const compareJSON = (x, y) => {
@@ -11,7 +10,7 @@ describe("Test tasks", () => {
         ty = typeof y;
       return x && y && tx === "object" && tx === ty
         ? ok(x).length === ok(y).length &&
-            ok(x).every(key => compareJSON(x[key], y[key]))
+            ok(x).every((key) => compareJSON(x[key], y[key]))
         : x === y;
     };
     it("Compare JSON true", () => {
@@ -34,7 +33,7 @@ describe("Test tasks", () => {
     });
   });
 
-  describe("Statictic data slice", () => {
+  describe.only("Statictic data slice", () => {
     class RequestsSlicer {
       constructor() {
         this.memory = new Map();
@@ -43,8 +42,7 @@ describe("Test tasks", () => {
         if (this.memory.has(rq.source)) {
           this.memory.get(rq.source).push(rq);
         } else {
-          this.memory.set(rq.source, []);
-          this.memory.get(rq.source).push(rq);
+          this.memory.set(rq.source, [rq]);
         }
       }
       topFreqSources() {
@@ -52,7 +50,7 @@ describe("Test tasks", () => {
         for (const i of this.memory.keys()) {
           statiscticData.push({ source: i, length: this.memory.get(i).length });
         }
-        statiscticData.sort(function(i, j) {
+        statiscticData.sort(function (i, j) {
           if (i.length > j.length) return -1;
           if (i.length < j.length) return 1;
           return 0;
@@ -74,11 +72,11 @@ describe("Test tasks", () => {
         sources.push(`source${i}`);
       }
 
-      for (let i = 0; i < 1000000; i++) {
-        getRandomInt(sources.length);
+      for (let i = 0; i < 100000; i++) {
+        console.log(i);
         slicer.requestHandler({
           source: sources[getRandomInt(sources.length)],
-          sourceData: getRandomInt(Number.MAX_SAFE_INTEGER)
+          sourceData: getRandomInt(Number.MAX_SAFE_INTEGER),
         });
       }
 
