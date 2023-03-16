@@ -33,7 +33,7 @@ describe("Test tasks", () => {
     });
   });
 
-  describe.only("Statictic data slice", () => {
+  describe("Statictic data slice", () => {
     class RequestsSlicer {
       constructor() {
         this.memory = new Map();
@@ -73,7 +73,6 @@ describe("Test tasks", () => {
       }
 
       for (let i = 0; i < 100000; i++) {
-        console.log(i);
         slicer.requestHandler({
           source: sources[getRandomInt(sources.length)],
           sourceData: getRandomInt(Number.MAX_SAFE_INTEGER),
@@ -82,6 +81,37 @@ describe("Test tasks", () => {
 
       console.log("top 10 results");
       console.log(slicer.topFreqSources());
+    });
+  });
+
+  describe("Sort array of numbers with setTimeout", () => {
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+    const arr = [];
+    for (let index = 0; index < 100; index++) {
+      arr.push(getRandomInt(100));
+    }
+    console.log(arr);
+    it("sort array", async () => {
+      const sortedArr = [];
+      arr.map((x) => {
+        setTimeout(() => {
+          sortedArr.push(x);
+        }, x);
+      });
+
+      await new Promise((res) =>
+        setTimeout(() => {
+          expect(true).toBe(true);
+          res();
+        }, 4000)
+      );
+
+      console.log(
+        "🚀 ~ file: some-test-tasks.spec.js:98 ~ describe.only ~ sortedArr:",
+        sortedArr
+      );
     });
   });
 });
