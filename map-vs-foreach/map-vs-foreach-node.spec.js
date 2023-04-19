@@ -1,4 +1,4 @@
-const faker = require("faker");
+const { faker } = require("@faker-js/faker");
 const NS_PER_SEC = 1e9;
 
 let data = [];
@@ -10,14 +10,6 @@ describe("map vs forEach performance comparing", () => {
       data[i] = {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
-        findName: faker.name.findName(),
-        jobTitle: faker.name.jobTitle(),
-        prefix: faker.name.prefix(),
-        suffix: faker.name.suffix(),
-        title: faker.name.title(),
-        jobDescriptor: faker.name.jobDescriptor(),
-        jobArea: faker.name.jobArea(),
-        jobType: faker.name.jobType()
       };
     }
   });
@@ -28,9 +20,9 @@ describe("map vs forEach performance comparing", () => {
 
   it("map", () => {
     const time = process.hrtime();
-    const resArray = data.map(item => ({
+    const resArray = data.map((item) => ({
       ...item,
-      str: `${item.prefix}-${item.firstName}-${item.lastName}`
+      str: `${item.prefix}-${item.firstName}-${item.lastName}`,
     }));
     const diff = process.hrtime(time);
     const secondsDiff = (diff[0] * NS_PER_SEC + diff[1]) / NS_PER_SEC;
@@ -40,7 +32,7 @@ describe("map vs forEach performance comparing", () => {
   it("forEach", () => {
     const time = process.hrtime();
     const resArray = data.forEach(
-      item => (item.str = `${item.prefix}-${item.firstName}-${item.lastName}`)
+      (item) => (item.str = `${item.prefix}-${item.firstName}-${item.lastName}`)
     );
     const diff = process.hrtime(time);
     const secondsDiff = (diff[0] * NS_PER_SEC + diff[1]) / NS_PER_SEC;

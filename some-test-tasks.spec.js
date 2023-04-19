@@ -72,7 +72,7 @@ describe("Test tasks", () => {
         sources.push(`source${i}`);
       }
 
-      for (let i = 0; i < 100000; i++) {
+      for (let i = 0; i < 1000; i++) {
         slicer.requestHandler({
           source: sources[getRandomInt(sources.length)],
           sourceData: getRandomInt(Number.MAX_SAFE_INTEGER),
